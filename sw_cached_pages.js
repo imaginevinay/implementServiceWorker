@@ -46,11 +46,13 @@ self.addEventListener('activate', (e) => {
 
 // call fetch event in case of offline app
 self.addEventListener('fetch', e => {
-    console.log("Fetch event callled from sw")
-        // check if live site available 
+    // check if live site available
+
+    console.log("eeeeeeee", e)
     e.respondWith(
         // check if request to live page fails then promise wiill pass data to catch as reject so load cache page stored there
         fetch(e.request).catch(() => {
+            console.log(e.request)
             caches.match(e.request)
         })
     )
